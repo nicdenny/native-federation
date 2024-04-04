@@ -7,19 +7,62 @@
   "tags": [],
   "targets": {
     "build": {
+      "executor": "@angular-architects/native-federation:build",
+      "dependsOn": [],
+      "options": {},
+      "configurations": {
+        "production": {
+          "target": "shell:asd:production"
+        },
+        "development": {
+          "target": "shell:asd:development"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {
+        "target": "shell:serve-original:development",
+        "rebuildDelay": 0,
+        "dev": true,
+        "port": 0
+      },
+      "dependsOn": []
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "shell:build"
+      },
+      "dependsOn": []
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/shell/jest.config.ts"
+      },
+      "dependsOn": []
+    },
+    "asd": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/shell",
         "index": "apps/shell/src/index.html",
         "browser": "apps/shell/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": ["zone.js", "es-module-shims"],
         "tsConfig": "apps/shell/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/shell/src/favicon.ico", "apps/shell/src/assets"],
         "styles": ["apps/shell/src/styles.scss"],
         "scripts": []
       },
+      "dependsOn": [],
       "configurations": {
         "production": {
           "budgets": [
@@ -44,33 +87,21 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve": {
+    "serve-original": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "shell:build:production"
+          "buildTarget": "shell:asd:production"
         },
         "development": {
-          "buildTarget": "shell:build:development"
+          "buildTarget": "shell:asd:development"
         }
       },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "shell:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/shell/jest.config.ts"
-      }
+        "port": 4200
+      },
+      "dependsOn": []
     }
   }
 }
