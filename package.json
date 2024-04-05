@@ -5,6 +5,7 @@
   "scripts": {},
   "private": true,
   "dependencies": {
+    "@angular-architects/ddd": "^17.0.3",
     "@angular-architects/native-federation": "^17.1.7",
     "@angular/animations": "~17.2.0",
     "@angular/common": "~17.2.0",
