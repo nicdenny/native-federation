@@ -15,6 +15,10 @@
               {
                 "sourceTag": "*",
                 "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
+                "sourceTag": "domain:mfe1",
+                "onlyDependOnLibsWithTags": ["domain:mfe1", "domain:shared"]
               }
             ]
           }
