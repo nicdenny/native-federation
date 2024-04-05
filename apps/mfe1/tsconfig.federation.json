@@ -2,13 +2,16 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": []
+    "types": [],
+    "target": "ES2022"
   },
   "files": [
     "src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "..\\..\\libs\\mfe1\\domain\\src\\index.ts",
+    "..\\..\\libs\\mfe1\\feature-content\\src\\index.ts"
   ],
   "exclude": [
     "jest.config.ts",

@@ -1,0 +1,36 @@
+{
+  "name": "mfe1-feature-content",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mfe1/feature-content/src",
+  "prefix": "mfe1",
+  "tags": ["domain:mfe1", "type:feature"],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/mfe1/feature-content/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/mfe1/feature-content/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/mfe1/feature-content/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/mfe1/feature-content/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
