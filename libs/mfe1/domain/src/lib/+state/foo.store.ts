@@ -14,7 +14,7 @@ interface State {
 
 const initialState: State = {
   flag: true,
-  counter: 0,
+  counter: 0, // TODO: value change doesn't trigger reload
 };
 
 export const FooStore = signalStore(
